@@ -37,8 +37,8 @@ This repository provides a backend service that reconciles identities based on c
 
 - Node.js
 - TypeScript
-- Express.js
-- [Database: PostgreSQL or another relational DB (as per your configuration)]
+- Hapi.js
+- Database: PostgreSQL
 - Sequelize (ORM)
 
 ## Getting Started
@@ -47,7 +47,7 @@ This repository provides a backend service that reconciles identities based on c
 
 - Node.js (version >= 14)
 - npm or yarn
-- PostgreSQL (or your chosen DBMS)
+- PostgreSQL
 
 ### Installation
 
