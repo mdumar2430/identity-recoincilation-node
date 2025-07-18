@@ -1,0 +1,41 @@
+# Node modules
+/node_modules/
+
+# Compiled output
+/lib/
+dist/
+build/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Environment variables
+.env
+.env.*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE/editor folders
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Coverage reports
+coverage/
+.nyc_output/
+
+# TypeScript
+*.tsbuildinfo
+
+# Misc
+*.tgz
+*.bak
+
+# Sequelize CLI (if you use with migrations)
+.sequelizerc
+*.sqlite
