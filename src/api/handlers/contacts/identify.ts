@@ -4,12 +4,12 @@ import * as ContactService from "../../services/contacts/index.js";
 
 export const identifyPayloadSchema = Joi.object({
   email: Joi.string().email().allow(null).optional(),
-  phoneNumber: Joi.number().allow(null).optional(),
+  phoneNumber: Joi.string().allow(null).optional(),
 }).required();
 
 interface IdentifyPayload {
   email?: string;
-  phoneNumber?: number;
+  phoneNumber?: string;
 }
 interface IdentifyResponse {
   primaryContactId: number;
@@ -79,7 +79,7 @@ export const identifyHandler = async (request: Request, h: ResponseToolkit) => {
 
   for (const c of matchingContacts) {
     if (c.email) emails.add(c.email);
-    if (c.phoneNumber) phoneNumbers.add(c.phoneNumber.toString());
+    if (c.phoneNumber) phoneNumbers.add(c.phoneNumber);
     if (c.linkPrecedence === "secondary") secondaryIds.push(c.id);
   }
 
@@ -98,7 +98,7 @@ export const identifyHandler = async (request: Request, h: ResponseToolkit) => {
 
     if (newSecondary.email) emails.add(newSecondary.email);
     if (newSecondary.phoneNumber)
-      phoneNumbers.add(newSecondary.phoneNumber.toString());
+      phoneNumbers.add(newSecondary.phoneNumber);
     secondaryIds.push(newSecondary.id);
   }
 

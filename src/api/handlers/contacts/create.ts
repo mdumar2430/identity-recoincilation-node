@@ -4,7 +4,7 @@ import Joi from "joi";
 
 export const createContactPayloadSchema = Joi.object({
   email: Joi.string().email().allow(null),
-  phoneNumber: Joi.number().allow(null),
+  phoneNumber: Joi.string().allow(null),
   linkPrecedence: Joi.string().valid("primary", "secondary").optional(),
   linkedId: Joi.number().integer().allow(null).optional(),
 });
