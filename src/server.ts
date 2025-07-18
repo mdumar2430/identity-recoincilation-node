@@ -2,9 +2,12 @@ import { Server } from "@hapi/hapi";
 import { routes } from "./api/routes/routes.js";
 import { sequelize } from "./sequelize.js";
 import "./api/models/Contact.js";
+
+const port = process.env.PORT || 4000 
+
 const init = async () => {
   const server = new Server({
-    port: 3000,
+    port: port,
     host: "localhost",
   });
 
