@@ -3,12 +3,12 @@ import { routes } from "./api/routes/routes.js";
 import { sequelize } from "./sequelize.js";
 import "./api/models/Contact.js";
 
-const port = process.env.PORT || 4000 
+const port = process.env.PORT || 4000;
 
 const init = async () => {
   const server = new Server({
     port: port,
-    host: "localhost",
+    host: "0.0.0.0",
   });
 
   server.route(routes);
