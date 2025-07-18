@@ -149,5 +149,5 @@ This project is developed as part of the Bitespeed Backend Task: Identity Reconc
 
 ---
 
-[1] https://github.com/mdumar2430/identity-recoincilation-node
-[2] https://bitespeed.notion.site/Bitespeed-Backend-Task-Identity-Reconciliation-1fb21bb2a930802eb896d4409460375c
+
+(Link to task)[https://bitespeed.notion.site/Bitespeed-Backend-Task-Identity-Reconciliation-1fb21bb2a930802eb896d4409460375c]
