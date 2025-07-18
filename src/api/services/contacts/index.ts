@@ -9,7 +9,7 @@ import { Contact } from '../../models/Contact.js';
  */
 export const findMatches = async (
   email: string | null,
-  phoneNumber: string | null
+  phoneNumber: number | null
 ): Promise<Contact[]> => {
   const conditions = [];
 

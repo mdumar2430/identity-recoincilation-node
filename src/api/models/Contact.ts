@@ -10,7 +10,7 @@ import { sequelize } from '../../sequelize.js'; // Adjust path as needed
 interface ContactAttributes {
   id: number;
   email: string | null;
-  phoneNumber: string | null;
+  phoneNumber: number | null;
   linkedId: number | null;  // foreign key to another Contact
   linkPrecedence: 'primary' | 'secondary';
   createdAt?: Date;
@@ -25,7 +25,7 @@ export class Contact extends Model<ContactAttributes, ContactCreationAttributes>
   implements ContactAttributes {
   public id!: number;
   public email!: string | null;
-  public phoneNumber!: string | null;
+  public phoneNumber!: number | null;
   public linkedId!: number | null;
   public linkPrecedence!: 'primary' | 'secondary';
   public readonly createdAt!: Date;
@@ -51,7 +51,7 @@ Contact.init(
       allowNull: true,
     },
     phoneNumber: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: true,
     },
     linkedId: {

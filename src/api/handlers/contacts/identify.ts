@@ -4,15 +4,12 @@ import * as ContactService from "../../services/contacts/index.js";
 
 export const identifyPayloadSchema = Joi.object({
   email: Joi.string().email().allow(null).optional(),
-  phoneNumber: Joi.string()
-    .pattern(/^[0-9]{10,15}$/)
-    .allow(null)
-    .optional(),
+  phoneNumber: Joi.number().allow(null).optional(),
 }).required();
 
 interface IdentifyPayload {
   email?: string;
-  phoneNumber?: string;
+  phoneNumber?: number;
 }
 interface IdentifyResponse {
   primaryContactId: number;
@@ -82,13 +79,13 @@ export const identifyHandler = async (request: Request, h: ResponseToolkit) => {
 
   for (const c of matchingContacts) {
     if (c.email) emails.add(c.email);
-    if (c.phoneNumber) phoneNumbers.add(c.phoneNumber);
+    if (c.phoneNumber) phoneNumbers.add(c.phoneNumber.toString());
     if (c.linkPrecedence === "secondary") secondaryIds.push(c.id);
   }
 
   // If current (email + phone) pair not in DB, add it as secondary
   const alreadyExists = matchingContacts.find(
-    (c) => c.email === email && c.phoneNumber === phoneNumber
+    (c) => c.email === email && c.phoneNumber == phoneNumber
   );
 
   if (!alreadyExists) {
@@ -100,7 +97,8 @@ export const identifyHandler = async (request: Request, h: ResponseToolkit) => {
     });
 
     if (newSecondary.email) emails.add(newSecondary.email);
-    if (newSecondary.phoneNumber) phoneNumbers.add(newSecondary.phoneNumber);
+    if (newSecondary.phoneNumber)
+      phoneNumbers.add(newSecondary.phoneNumber.toString());
     secondaryIds.push(newSecondary.id);
   }
 
@@ -111,5 +109,5 @@ export const identifyHandler = async (request: Request, h: ResponseToolkit) => {
     secondaryContactIds: secondaryIds,
   };
 
-  return h.response({ contact: response }).code(200);
+  return h.response(response).code(200);
 };

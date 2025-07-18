@@ -4,9 +4,7 @@ import Joi from "joi";
 
 export const createContactPayloadSchema = Joi.object({
   email: Joi.string().email().allow(null),
-  phoneNumber: Joi.string()
-    .pattern(/^[0-9]{10,15}$/)
-    .allow(null),
+  phoneNumber: Joi.number().allow(null),
   linkPrecedence: Joi.string().valid("primary", "secondary").optional(),
   linkedId: Joi.number().integer().allow(null).optional(),
 });
