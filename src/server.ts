@@ -1,7 +1,7 @@
 import { Server } from "@hapi/hapi";
 import { routes } from "./api/routes/routes.js";
 import { sequelize } from "./sequelize.js";
-import "./api/models/Contact.js"
+import "./api/models/Contact.js";
 const init = async () => {
   const server = new Server({
     port: 3000,
@@ -16,6 +16,11 @@ const init = async () => {
 
   await server.start();
   console.log(`✅ Server running at: ${server.info.uri}`);
+  console.log(
+    `🚀 Endpoints list:\n\t${routes
+      .map((x, idx) => `${idx + 1}. ${x.method} ${x.path}`)
+      .join("\n\t")}`
+  );
 };
 
 process.on("unhandledRejection", (err) => {
